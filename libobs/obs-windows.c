@@ -1040,6 +1040,9 @@ void obs_key_to_str(obs_key_t key, struct dstr *str)
 	if (key == OBS_KEY_NONE) {
 		return;
 
+	} else if (key >= OBS_KEY_F13 && key <= OBS_KEY_F24) {
+		dstr_printf(str, "F%d", (int)(key - OBS_KEY_F13 + 13));
+		return;
 	} else if (key >= OBS_KEY_MOUSE1 && key <= OBS_KEY_MOUSE29) {
 		if (obs->hotkeys.translations[key]) {
 			dstr_copy(str, obs->hotkeys.translations[key]);
@@ -1264,9 +1267,7 @@ bool initialize_com(void)
 {
 	const HRESULT hr = CoInitializeEx(0, COINIT_APARTMENTTHREADED);
 	const bool success = SUCCEEDED(hr);
-	if (success)
-		blog(LOG_INFO, "CoInitializeEx succeeded: 0x%08X", hr);
-	else
+	if (!success)
 		blog(LOG_ERROR, "CoInitializeEx failed: 0x%08X", hr);
 	return success;
 }
