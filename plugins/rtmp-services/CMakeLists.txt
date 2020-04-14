@@ -9,6 +9,7 @@ include_directories(${OBS_JANSSON_INCLUDE_DIRS})
 set(rtmp-services_SOURCES
 	twitch.c
 	younow.c
+	showroom.c
 	rtmp-common.c
 	rtmp-custom.c
 	rtmp-services-main.c)
@@ -16,6 +17,7 @@ set(rtmp-services_SOURCES
 set(rtmp-services_HEADERS
 	twitch.h
 	younow.h
+	showroom.h
 	rtmp-format-ver.h)
 
 set(RTMP_SERVICES_URL
