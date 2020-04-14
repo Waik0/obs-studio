@@ -2,11 +2,11 @@
 #include <util/dstr.h>
 #include <obs-module.h>
 #include <jansson.h>
-
+#include <obs-config.h>
 #include "rtmp-format-ver.h"
 #include "twitch.h"
 #include "younow.h"
-
+#include "showroom.h"
 struct rtmp_common {
 	char *service;
 	char *server;
@@ -471,6 +471,8 @@ static obs_properties_t *rtmp_common_properties(void *unused)
 
 	obs_properties_add_text(ppts, "key", obs_module_text("StreamKey"),
 				OBS_TEXT_PASSWORD);
+	obs_properties_add_text(ppts, "access", obs_module_text("AccessKey"),
+				OBS_TEXT_PASSWORD);
 	return ppts;
 }
 
@@ -603,12 +605,31 @@ static const char *rtmp_common_url(void *data)
 		}
 	}
 
+	if (service->service && strcmp(service->service, "SHOWROOM") == 0) {
+		if (service->server && service->key) {
+			showroom_ingest ingest;
+			ingest = showroom_get_ingest(
+				service->server,
+				service->key);
+			//strcpy(, ingest.url);
+			return ingest.url;
+		}
+	}
 	return service->server;
 }
 
 static const char *rtmp_common_key(void *data)
 {
 	struct rtmp_common *service = data;
+	if (service->service && strcmp(service->service, "SHOWROOM") == 0) {
+		if (service->server && service->key) {
+			showroom_ingest ingest;
+			ingest = showroom_get_ingest(
+				service->server,
+				service->key);
+			return ingest.key;
+		}
+	}
 	return service->key;
 }
 
