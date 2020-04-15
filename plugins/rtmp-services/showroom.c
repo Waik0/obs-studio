@@ -60,7 +60,7 @@ const showroom_ingest showroom_get_ingest(const char *server,const char *accessK
 	curl_easy_setopt(curl_handle, CURLOPT_URL, uri.array);
 	curl_easy_setopt(curl_handle, CURLOPT_SSL_VERIFYPEER, true);
 	curl_easy_setopt(curl_handle, CURLOPT_SSL_VERIFYHOST, 2L);
-	curl_easy_setopt(curl_handle, CURLOPT_TIMEOUT, 3L);
+	curl_easy_setopt(curl_handle, CURLOPT_TIMEOUT, 30L);
 	curl_easy_setopt(curl_handle, CURLOPT_WRITEFUNCTION, showroom_write_cb);
 	curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, (void *)&chunk);
 	curl_obs_set_revoke_setting(curl_handle);
