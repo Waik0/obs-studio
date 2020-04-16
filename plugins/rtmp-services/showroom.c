@@ -13,7 +13,7 @@ struct showroom_mem_struct {
 	size_t size;
 };
 static size_t showroom_write_cb(void *contents, size_t size, size_t nmemb,
-			      void *userp)
+				void *userp)
 {
 	size_t realsize = size * nmemb;
 	struct showroom_mem_struct *mem = (struct showroom_mem_struct *)userp;
@@ -35,15 +35,17 @@ showroom_ingest get_ingest_from_json(char *str)
 	json_error_t error;
 	json_t *root;
 	showroom_ingest result;
-	root = json_loads(str, JSON_REJECT_DUPLICATES,&error);
+	root = json_loads(str, JSON_REJECT_DUPLICATES, &error);
 	if (!root) {
 		return result;
 	}
-	result.url = json_string_value(json_object_get(root, "streaming_url_rtmp"));
+	result.url =
+		json_string_value(json_object_get(root, "streaming_url_rtmp"));
 	result.key = json_string_value(json_object_get(root, "streaming_key"));
 	return result;
 }
-const showroom_ingest showroom_get_ingest(const char *server,const char *accessKey)
+const showroom_ingest showroom_get_ingest(const char *server,
+					  const char *accessKey)
 {
 	CURL *curl_handle;
 	CURLcode res;
@@ -52,8 +54,8 @@ const showroom_ingest showroom_get_ingest(const char *server,const char *accessK
 	long response_code;
 	curl_handle = curl_easy_init();
 
-	chunk.memory = malloc(1); 
-	chunk.size = 0;           
+	chunk.memory = malloc(1);
+	chunk.size = 0;
 	dstr_init(&uri);
 	dstr_copy(&uri, server);
 	dstr_ncat(&uri, accessKey, strlen(accessKey));
@@ -101,7 +103,7 @@ const showroom_ingest showroom_get_ingest(const char *server,const char *accessK
 		free(chunk.memory);
 		return ingest;
 	}
-	char* response = strdup(chunk.memory);
+	char *response = strdup(chunk.memory);
 	ingest = get_ingest_from_json(response);
 	free(chunk.memory);
 	return ingest;

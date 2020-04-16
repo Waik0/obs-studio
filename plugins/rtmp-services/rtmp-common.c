@@ -606,9 +606,8 @@ static const char *rtmp_common_url(void *data)
 	if (service->service && strcmp(service->service, "SHOWROOM") == 0) {
 		if (service->server && service->key) {
 			showroom_ingest ingest;
-			ingest = showroom_get_ingest(
-				service->server,
-				service->key);
+			ingest = showroom_get_ingest(service->server,
+						     service->key);
 			//strcpy(, ingest.url);
 			return ingest.url;
 		}
@@ -622,9 +621,8 @@ static const char *rtmp_common_key(void *data)
 	if (service->service && strcmp(service->service, "SHOWROOM") == 0) {
 		if (service->server && service->key) {
 			showroom_ingest ingest;
-			ingest = showroom_get_ingest(
-				service->server,
-				service->key);
+			ingest = showroom_get_ingest(service->server,
+						     service->key);
 			return ingest.key;
 		}
 	}

@@ -387,8 +387,7 @@ void OBSBasicSettings::on_service_currentIndexChanged(int)
 		ui->streamKeyLabel->setText(QCoreApplication::translate(
 			"OBSBasicSettings",
 			"Basic.AutoConfig.StreamPage.AccessKey", nullptr));
-	}
-	else {
+	} else {
 		ui->streamKeyLabel->setText(QCoreApplication::translate(
 			"OBSBasicSettings",
 			"Basic.AutoConfig.StreamPage.StreamKey", nullptr));
