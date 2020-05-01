@@ -1128,7 +1128,7 @@
             "servers": [
                 {
                     "name": "Auto",
-                    "url": "rtmp://s-sd.stripcdn.com/ext"
+                    "url": "rtmp://s-sd.stripst.com/ext"
                 }
             ],
             "recommended": {
@@ -1532,16 +1532,20 @@
             }
         },
         {
-            "name": "ChathostessModels",
+            "name": "Chathostess",
             "servers": [
                 {
-                    "name": "ChathostessModels - Default",
+                    "name": "Chathostess - Default",
                     "url": "rtmp://wowza01.foobarweb.com/cmschatsys_video"
+                },
+                {
+                    "name": "Chathostess - Backup",
+                    "url": "rtmp://wowza05.foobarweb.com/cmschatsys_video"
                 }
             ],
             "recommended": {
                 "keyint": 2,
-                "max video bitrate": 3000,
+                "max video bitrate": 3600,
                 "max audio bitrate": 128
             }
         },
@@ -1778,6 +1782,32 @@
                 "max audio bitrate": 96,
                 "max video bitrate": 904,
                 "x264opts": "tune=zerolatency"
+            }
+        },
+        {
+            "name": "WASD.TV",
+            "servers": [
+                {
+                    "name": "Automatic",
+                    "url": "rtmp://push.rtmp.wasd.tv/live"
+                },
+                {
+                    "name": "Russia, Moscow",
+                    "url": "rtmp://ru-moscow.rtmp.wasd.tv/live"
+                },
+                {
+                    "name": "Germany, Frankfurt",
+                    "url": "rtmp://de-frankfurt.rtmp.wasd.tv/live"
+                },
+                {
+                    "name": "Finland, Helsinki",
+                    "url": "rtmp://fi-helsinki.rtmp.wasd.tv/live"
+                }
+            ],
+            "recommended": {
+                "keyint": 2,
+                "max video bitrate": 10000,
+                "max audio bitrate": 192
             }
         },
         {

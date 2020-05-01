@@ -385,6 +385,7 @@ OBSBasic::OBSBasic(QWidget *parent)
 	statsDock->move(newPos);
 
 	ui->previewLabel->setProperty("themeID", "previewProgramLabels");
+	ui->previewLabel->style()->polish(ui->previewLabel);
 
 	bool labels = config_get_bool(GetGlobalConfig(), "BasicWindow",
 				      "StudioModeLabels");
@@ -3921,6 +3922,7 @@ void OBSBasic::ClearSceneData()
 		return true;
 	};
 
+	obs_enum_scenes(cb, nullptr);
 	obs_enum_sources(cb, nullptr);
 
 	if (api)
@@ -7712,6 +7714,8 @@ void OBSBasic::PauseRecording()
 		pause->setChecked(true);
 		pause->blockSignals(false);
 
+		ui->statusbar->RecordingPaused();
+
 		if (trayIcon)
 			trayIcon->setIcon(QIcon(":/res/images/obs_paused.png"));
 
@@ -7738,6 +7742,8 @@ void OBSBasic::UnpauseRecording()
 		pause->blockSignals(true);
 		pause->setChecked(false);
 		pause->blockSignals(false);
+
+		ui->statusbar->RecordingUnpaused();
 
 		if (trayIcon)
 			trayIcon->setIcon(
