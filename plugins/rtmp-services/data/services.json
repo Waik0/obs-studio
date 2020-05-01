@@ -1811,6 +1811,15 @@
             }
         },
         {
+            "name": "VirtWish",
+            "servers": [
+                {
+                    "name": "Default",
+                    "url": "rtmp://rtmp.virtwish.com/live"
+                }
+            ]
+        },
+        {
             "name": "SHOWROOM",
             "servers": [
                 {
